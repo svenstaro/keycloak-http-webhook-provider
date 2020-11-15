@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import org.jboss.logging.Logger;
 import org.keycloak.events.Event;
 import org.keycloak.events.EventListenerProvider;
 import org.keycloak.events.admin.AdminEvent;
@@ -21,6 +22,7 @@ import okhttp3.Response;
 
 public class KeycloakHttpWebhookProvider implements EventListenerProvider {
 
+    private static final Logger log = Logger.getLogger(KeycloakHttpWebhookProvider.class);
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private final OkHttpClient httpClient = new OkHttpClient();
     private String serverUrl;
@@ -54,12 +56,12 @@ public class KeycloakHttpWebhookProvider implements EventListenerProvider {
 
     @Override
     public void onEvent(Event event) {
-        System.out.println("Event Occurred:" + toString(event));
+        log.debug("Event Occurred:" + toString(event));
     }
 
     @Override
     public void onEvent(AdminEvent adminEvent, boolean b) {
-        System.out.println("Admin Event Occurred:" + toString(adminEvent));
+        log.debug("Admin Event Occurred:" + toString(adminEvent));
     }
 
     @Override

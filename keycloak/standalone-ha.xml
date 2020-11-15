@@ -453,7 +453,6 @@
             <jpa default-datasource="" default-extended-persistence-inheritance="DEEP"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">
-            <web-context>auth</web-context>
             <spi name="eventsListener">
                 <provider name="http_webhook" enabled="true">
                     <properties>
@@ -463,6 +462,7 @@
                     </properties>
                 </provider>
             </spi>
+            <web-context>auth</web-context>
             <providers>
                 <provider>
                     classpath:${jboss.home.dir}/providers/*
