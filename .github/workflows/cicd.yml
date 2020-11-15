@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install required packages
+        run: sudo apt install netcat jq
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
@@ -15,8 +17,8 @@ jobs:
         run: mvn clean install
       - name: Start Keycloak with provider
         run: keycloak/run-keycloak-container.sh --detach
-      - name: sudo apt install netcat jq
-      - name: nc -l -p 5000 | tail -n1 | jq -e .
+      - name: Listen for JSON
+        run: nc -l -p 5000 | tail -n1 | jq -e .
 
   publish:
     runs-on: ubuntu-latest
