@@ -22,3 +22,7 @@ Next, add the provider as an event listener on your Keycloak instance. For insta
 To very quickly start a development instance of Keycloak with Docker, you can ran
 
     keycloak/run-keycloak-container.sh
+
+## How to publish
+
+Snapshot version are automatically published via GitHub Actions.
