@@ -26,4 +26,5 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
+      - uses: actions/checkout@v2
       - run: mvn deploy -Dregistry=https://maven.pkg.github.com/svenstaro -Dtoken=${{ secrets.GITHUB_TOKEN }}
