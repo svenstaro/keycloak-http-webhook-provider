@@ -1,5 +1,7 @@
 # Keycloak HTTP Webhook Provider
 
+![CI/CD](https://github.com/svenstaro/keycloak-http-webhook-provider/workflows/CI/CD/badge.svg)
+
 A Keycloak provider that posts events to a URL via HTTP POST as JSON
 
 ## How to build
