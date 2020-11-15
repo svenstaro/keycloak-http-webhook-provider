@@ -8,4 +8,5 @@ docker run --rm --name keycloak \
     -e KEYCLOAK_PASSWORD=admin \
     -p 8080:8080 \
     --add-host host.docker.internal:$(ip addr show docker0 | grep -Po 'inet \K[\d.]+') \
+    "$@" \
     jboss/keycloak
