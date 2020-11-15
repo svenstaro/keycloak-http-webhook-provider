@@ -103,7 +103,7 @@
     <repository>
         <id>github</id>
         <name>GitHub Packages</name>
-        <url>https://maven.pkg.github.com/svenstaro/keycloak_http_webhook_provider</url>
+        <url>https://maven.pkg.github.com/svenstaro/keycloak-http-webhook-provider</url>
     </repository>
 </distributionManagement>
 </project>
