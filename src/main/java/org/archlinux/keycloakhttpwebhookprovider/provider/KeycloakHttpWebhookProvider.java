@@ -46,6 +46,8 @@ public class KeycloakHttpWebhookProvider implements EventListenerProvider {
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected code " + response);
         }
+
+        response.close();
     }
 
     @Override
