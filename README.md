@@ -13,6 +13,24 @@ A Keycloak provider that posts events to a URL via HTTP POST as JSON
 Copy the provider to the correct directory:
 
     cp target/keycloak_http_webhook_provider.jar /opt/keycloak/standalone/deployments/
+    
+In your config, you'll have to find the section
+```xml
+<subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">
+```
+and inside that section insert
+
+```xml
+<spi name="eventsListener">
+    <provider name="http_webhook" enabled="true">
+        <properties>
+            <property name="serverUrl" value="http://example.com/webhook"/>
+            <property name="username" value="your-basic-auth-user"/>
+            <property name="password" value="your-basic-auth-password"/>
+        </properties>
+    </provider>
+</spi>
+```
 
 Next, add the provider as an event listener on your Keycloak instance. For instance:
 
