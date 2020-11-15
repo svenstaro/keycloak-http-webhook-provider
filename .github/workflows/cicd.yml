@@ -27,4 +27,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: mvn deploy -Dregistry=https://maven.pkg.github.com/svenstaro -Dtoken=${{ secrets.GITHUB_TOKEN }}
+      - name: Publish package
+        run: mvn -B deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
