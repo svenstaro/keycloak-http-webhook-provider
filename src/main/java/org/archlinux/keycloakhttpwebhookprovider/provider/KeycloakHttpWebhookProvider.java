@@ -1,5 +1,12 @@
 package org.archlinux.keycloakhttpwebhookprovider.provider;
 
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import org.keycloak.events.Event;
 import org.keycloak.events.EventListenerProvider;
 import org.keycloak.events.admin.AdminEvent;
@@ -10,11 +17,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import java.io.IOException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class KeycloakHttpWebhookProvider implements EventListenerProvider {
@@ -81,7 +83,12 @@ public class KeycloakHttpWebhookProvider implements EventListenerProvider {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = "";
         try {
-            jsonString = mapper.writeValueAsString(adminEvent);
+            // An AdminEvent has weird JSON representation field which we need to special case.
+            JsonNode representationNode = mapper.readTree(adminEvent.getRepresentation());
+            ObjectNode node = mapper.valueToTree(adminEvent);
+            node.replace("representation", representationNode);
+            jsonString = mapper.writeValueAsString(node);
+
             sendJson(jsonString);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
