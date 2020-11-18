@@ -45,13 +45,11 @@ public class KeycloakHttpWebhookProvider implements EventListenerProvider {
 
         Request request = request_builder.post(RequestBody.create(jsonString, JSON)).build();
 
-        Response response = httpClient.newCall(request).execute();
-
-        if (!response.isSuccessful()) {
-            throw new IOException("Unexpected code " + response);
+        try (Response response = httpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
         }
-
-        response.close();
     }
 
     @Override
