@@ -35,7 +35,7 @@ public class KeycloakHttpWebhookProvider implements EventListenerProvider {
         this.password = password;
     }
 
-    private void sendJson(String jsonString) throws IOException {
+    private void sendJson(String jsonString) {
         Request.Builder request_builder = new Request.Builder().url(this.serverUrl).addHeader("User-Agent", "Keycloak Webhook");
 
         if (this.username != null && this.password != null) {
@@ -47,8 +47,10 @@ public class KeycloakHttpWebhookProvider implements EventListenerProvider {
 
         try (Response response = httpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException("Unexpected code " + response);
+                log.error(String.format("Failed to POST webhook: %s %s",  response.code(), response.message()));
             }
+        } catch (IOException e) {
+            log.error("Failed to POST webhook:", e);
         }
     }
 
