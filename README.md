@@ -1,6 +1,6 @@
 # Keycloak HTTP Webhook Provider
 
-![CI/CD](https://github.com/svenstaro/keycloak-http-webhook-provider/workflows/CI/CD/badge.svg)
+[![CI](https://github.com/svenstaro/keycloak-http-webhook-provider/workflows/CI/badge.svg)](https://github.com/svenstaro/keycloak-http-webhook-provider/actions)
 
 A Keycloak provider that posts events to a URL via HTTP POST as JSON
 
@@ -13,7 +13,7 @@ A Keycloak provider that posts events to a URL via HTTP POST as JSON
 Copy the provider to the correct directory:
 
     cp target/keycloak_http_webhook_provider.jar /opt/keycloak/standalone/deployments/
-    
+
 In your config, you'll have to find the section
 ```xml
 <subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">
@@ -45,4 +45,5 @@ To very quickly start a development instance of Keycloak with Docker, you can ra
 
 ## How to publish
 
-Snapshot version are automatically published via GitHub Actions.
+Snapshot versions are automatically published via GitHub Actions.
+Pushing a tag will cause GitHub Actions to create a proper release with a build artifact.
