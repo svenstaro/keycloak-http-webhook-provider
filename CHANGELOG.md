@@ -7,5 +7,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 <!-- next-header -->
 
-## [1.0.0] - 2021-02-11
+## 1.0.0 - 2021-02-11
 - Initial release
