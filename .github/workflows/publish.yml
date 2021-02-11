@@ -39,6 +39,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: target/keycloak_http_webhook_provider-jar-with-dependencies.jar
           tag: ${{ github.ref }}
-          asset_name: keycloak-http-webhook-provider-$tag
+          asset_name: keycloak-http-webhook-provider-$tag.jar
           body: ${{ steps.changelog_reader.outputs.log_entry }}
 
